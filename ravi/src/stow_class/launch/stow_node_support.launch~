@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+
+
+
+
+   <include file="$(find stow_class)/launch/param.launch">
+	
+        <arg name="ARC17_PARAM_PATH" default="/home/ravi/Desktop/APC_stow/stow_ws/params" />
+        <rosparam command="load" file= "$(arg ARC17_PARAM_PATH)/param.yaml"/>
+
+  </include>
+
+
+
+
+  
+  <node name="joint_state_feedback" pkg="apc_nozel" type="joint_state_feedback" respawn="false" output="screen"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</launch>

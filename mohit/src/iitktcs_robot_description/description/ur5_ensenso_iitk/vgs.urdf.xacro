@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<!-- xacro for vgs mounted on the manipulator -->
+
+<robot name="gripper_suction" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <property name="M_PI" value="3.14159265" />
+  <xacro:macro name="gripper_suction" params="prefix">
+
+    <!-- venkat gripper suction -->
+    <joint name="body_joint" type="fixed">
+      <origin rpy="-${M_PI/2} 0 0" xyz="0 0 0"/>
+      <parent link="${prefix}ee_link"/>
+      <child link="${prefix}gs_body_link"/>
+    </joint>
+    <link name="${prefix}gs_body_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="-0.0055 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/body_no_motors.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="White">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="-0.0055 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/body_no_motors_new.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+      </inertial>
+    </link>
+
+    <joint name="bottom_motor_joint" type="fixed">
+      <origin rpy="-${M_PI/2} 0 0" xyz="0 0 0"/>
+      <parent link="${prefix}ee_link"/>
+      <child link="${prefix}bottom_motor_link"/>
+    </joint>
+    <link name="${prefix}bottom_motor_link">
+      <visual>
+        <origin rpy="0 ${pi/2} ${pi/2}" xyz="0.198 -0.024 -0.003"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/actuator_bottom.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="White">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 ${pi/2} ${pi/2}" xyz="0.198 -0.024 -0.003"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/actuator_bottom_new.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+      </inertial>
+    </link>
+
+    <joint name="top_motor_joint" type="fixed">
+      <origin rpy="-${M_PI/2} 0 0" xyz="0 0 0"/>
+      <parent link="${prefix}ee_link"/>
+      <child link="${prefix}top_motor_link"/>
+    </joint>
+    <link name="${prefix}top_motor_link">
+      <visual>
+        <origin rpy="0 -${pi/2} ${pi/2}" xyz="0.064 0.06 0.0"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/actuator_top.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="White">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 -${pi/2} ${pi/2}" xyz="0.064 0.06 0.0"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/actuator_top_new.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+      </inertial>
+    </link>
+
+    <joint name="gripper_body_joint" type="prismatic">
+      <origin rpy="-${M_PI/2} 0 0" xyz="0 0 0"/>
+      <parent link="${prefix}ee_link"/>
+      <child link="${prefix}gripper_body_link"/>
+      <limit effort="1000.0" lower="-0.06" upper="0" velocity="0.5"/>
+    </joint>
+    <link name="${prefix}gripper_body_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="-0.0055 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/gripper_body.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="White">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="-0.0055 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/gripper_body_new.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+      </inertial>
+    </link>
+
+    <joint name="gripper_left_finger_joint" type="revolute">
+      <origin rpy="0 0 0" xyz="0.2295 0.03 0"/>
+      <parent link="${prefix}gripper_body_link"/>
+      <child link="${prefix}left_finger_link"/>
+      <axis xyz="0 1 0" />
+      <limit lower="-0.16" upper="0.0" effort="150.0" velocity="3.15"/>
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+    <link name="${prefix}left_finger_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="-0.235 -0.03 0.0"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/left_gripper.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="White">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="-0.235 -0.03 0.0"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/left_gripper_new.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+      </inertial>
+    </link>
+
+    <joint name="gripper_right_finger_joint" type="revolute">
+      <origin rpy="0 0 0" xyz="0.2295 0.032 -0.00119"/>
+      <parent link="${prefix}gripper_body_link"/>
+      <child link="${prefix}right_finger_link"/>
+      <axis xyz="0 1 0" />
+      <limit lower="0.0" upper="0.16" effort="150.0" velocity="3.15"/>
+      <mimic joint="gripper_left_finger_joint" multiplier="-1.0" offset="0.0"/>
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+    <link name="${prefix}right_finger_link">
+      <visual>
+        <!--origin rpy="0 0 0" xyz="-0.192 -0.035 -0.04"/-->
+	<origin rpy="0 -0.16 0" xyz="-0.0025 0.0025 -0.017"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/right_gripper.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="White">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <!--origin rpy="0 0 0" xyz="-0.192 -0.035 -0.04"/-->
+	<origin rpy="0 -0.16 0" xyz="-0.0025 0.0025 -0.017"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/right_gripper_new.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+      </inertial>
+    </link>
+
+    <joint name="suction_base_joint" type="revolute">
+      <parent link="${prefix}gs_body_link"/>
+      <child link="${prefix}suction_base_link"/>
+      <origin rpy="0 0 0" xyz="0.369 0.005 0.0"/>
+      <axis xyz="0 0 1" />
+      <limit lower="0.0" upper="${pi/2}" effort="150.0" velocity="3.15"/>
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+    <link name="${prefix}suction_base_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="-0.00125 -0.0305 0.0"/><!-- z 0.012 for checking rotation axis-->
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/suction_rotation_11th_april.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="White">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <!--collision>
+        <origin rpy="0 0 0" xyz="-0.00125 -0.0305 0.0"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/suction_rotation_11th_april_new.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision-->
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+      </inertial>
+    </link>
+
+    <joint name="schubert_bellow_joint" type="fixed">
+      <parent link="${prefix}suction_base_link"/>
+      <child link="${prefix}bellow_link"/>
+      <origin rpy="0 0 0" xyz="-0.002 -0.03 0.002"/>
+    </joint>
+
+    <link name="${prefix}bellow_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="-0.02 -0.027 -0.0225"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/schubert_bellow.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="White">
+          <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+        </material>
+      </visual>
+      <!--collision>
+        <origin rpy="0 0 0" xyz="-0.02 -0.027 -0.0225"/>
+        <geometry>
+          <mesh filename="package://iitktcs_robot_description/meshes/gripper_design_1/schubert_bellow_new.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision-->
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+      </inertial>
+    </link>
+
+    <!-- end-effector links -->
+
+    <!-- Measurements from real gripper system. All measurements are from ee_link.
+	- gripper measurement is taken till the central screw of the square finger plates
+ 	- gripper eef length 	45.5cm = 	model 44.5cm
+	- gripper open length 	39cm = 		model not considered
+	- gripper height 	2cm = 		model 2cm
+
+	- suction measurement is taken till the blue colored suction bellow opening (not pressed the bellow)
+	- suction bend length 	37cm = 	model 36.7cm
+	- suction bend height 	-6cm = 	model -5cm
+	- suction stght length 	43cm =	model 42.5
+
+	- suction measurement is taken till the blue colored suction bellow opening (not pressed the bellow). Readings are for suction bend inside at 45 degrees
+	- suction inside bend 45 length 41.4cm 	= model 41.4cm
+	- suction inside bend 45 height -5cm	= model -4.5cm
+	-->
+
+    <joint name="suction_bend_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0.367 -0.05 0.0"/>
+      <parent link="gs_body_link"/>
+      <child link="s_bend_eef_link"/>
+    </joint>
+    <link name="s_bend_eef_link"/>
+
+    <!--joint name="suction_st_joint" type="fixed">
+      <origin rpy="0 0 ${90*M_PI/180}" xyz="0.423 0.0 0.0"/>
+      <parent link="gs_body_link"/>
+      <child link="s_st_eef_link"/>
+    </joint>
+    <link name="s_st_eef_link"/>
+
+    <joint name="gripper_eef_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0.445 0.02 0.0"/>
+      <parent link="gs_body_link"/>
+      <child link="gripper_eef_link"/>
+    </joint>
+    <link name="gripper_eef_link"/-->
+		
+    <joint name="gripper_eef_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0.078 0.07 0.0"/>
+      <parent link="s_bend_eef_link"/>
+      <child link="gripper_eef_link"/>
+    </joint>
+    <link name="gripper_eef_link"/>
+
+    <joint name="suction_mid_joint" type="fixed">
+      <origin rpy="0 0 ${45*M_PI/180}" xyz="-0.04 -0.055 0.0"/>
+      <parent link="gripper_eef_link"/>
+      <child link="s_mid_eef_link"/>
+    </joint>
+    <link name="s_mid_eef_link"/>
+
+    <joint name="suction_tmp_joint" type="fixed">
+      <origin rpy="0 0 -${45*M_PI/180}" xyz="0.0 0.0 0.0"/>
+      <parent link="s_mid_eef_link"/>
+      <child link="s_tmp_eef_link"/>
+    </joint>
+    <link name="s_tmp_eef_link"/>
+
+    <joint name="suction_st_joint" type="fixed">
+      <origin rpy="0 0 ${90*M_PI/180}" xyz="0.02 0.04 0.0"/>
+      <parent link="s_tmp_eef_link"/>
+      <child link="s_st_eef_link"/>
+    </joint>
+    <link name="s_st_eef_link"/>
+
+
+  </xacro:macro>
+</robot>

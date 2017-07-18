@@ -1,0 +1,9 @@
+This urdf file was generated to plan for UR5 using single joint to control suction.
+
+We added this joint to motion plan. Hence, now we have to plan for 7 joints.
+
+But we failed in joint trajectory action. The ur_modern_driver uses follow_joint_trajectory action
+working with 6 joints. But moveit now was generating trajectory plans for 7 joints.
+
+We have to figure out how to remap from 7 joints follow_joint_trajectory action to 6 joints
+follow_joint_trajectory action

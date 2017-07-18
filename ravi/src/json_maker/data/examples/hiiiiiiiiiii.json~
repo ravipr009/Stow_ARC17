@@ -1,0 +1,42 @@
+{
+	"bins" : 
+	[
+		{
+			"bin_id" : "A",
+			"contents" : []
+		},
+		{
+			"bin_id" : "B",
+			"contents" : 
+			[
+				"Toilet_Brush"
+			]
+		}
+	],
+	"boxes" : [],
+	"tote" : 
+	{
+		"contents" : 
+		[
+			"Avery_Binder",
+			"Balloons",
+			"Band_Aid_Tape",
+			"Bath_Sponge",
+			"Black_Fashion_Gloves",
+			"a",
+			"b",
+			"Burts_Bees_Baby_Wipes",
+			"c",
+			"d",
+			"Colgate_Toothbrush_4PK",
+			"e",
+			"f",
+			"Composition_Book",
+			"g",
+			"h",
+			"Crayons",
+			"i",
+			"j"
+		]
+	}
+}

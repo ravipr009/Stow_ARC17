@@ -1,0 +1,56 @@
+{
+	"bins" : 
+	[
+		{
+			"bin_id" : "A",
+			"contents" : 
+			[
+				"Pie_Plates",
+				"Marbles",
+				"Robots_Everywhere",
+				"Speed_Stick",
+				"Reynolds_Wrap",
+				"Tissue_Box",
+				"Toilet_Brush",
+				"Balloons",
+				"Colgate_Toothbrush_4PK",
+				"Composition_Book",
+				"Duct_Tape",
+				"Expo_Eraser",
+				"Glue_Sticks",
+				"Hanes_Socks"
+			]
+		},
+		{
+			"bin_id" : "B",
+			"contents" : 
+			[
+				"Ticonderoga_Pencils",
+				"Robots_DVD",
+				"Poland_Spring_Water",
+				"Tennis_Ball_Container",
+				"Windex",
+				"Table_Cloth",
+				"Avery_Binder",
+				"Band_Aid_Tape",
+				"Black_Fashion_Gloves",
+				"Burts_Bees_Baby_Wipes",
+				"Crayons",
+				"Epsom_Salts",
+				"Fiskars_Scissors",
+				"Hinged_Ruled_Index_Cards"
+			]
+		}
+	],
+	"boxes" : [],
+	"tote" : 
+	{
+		"contents" : 
+		[
+			"Bath_Sponge",
+			"Flashlight",
+			"Hand_Weight",
+			"Ice_Cube_Tray"
+		]
+	}
+}

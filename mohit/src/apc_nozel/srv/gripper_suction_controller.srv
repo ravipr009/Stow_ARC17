@@ -1,0 +1,5 @@
+std_msgs/Int8 nozel_angle
+std_msgs/Int8 suction_valve
+std_msgs/Int8 vacuum_cleaner
+---
+std_msgs/Char status

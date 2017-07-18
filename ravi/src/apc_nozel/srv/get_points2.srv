@@ -1,0 +1,6 @@
+std_msgs/UInt32MultiArray remaining_objects
+---
+std_msgs/UInt32 object_ID
+geometry_msgs/Point centroid_wrt_kinect
+geometry_msgs/Point normal_wrt_kinect
+geometry_msgs/Point axis_wrt_kinect

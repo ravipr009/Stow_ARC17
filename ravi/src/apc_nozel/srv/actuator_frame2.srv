@@ -1,0 +1,5 @@
+geometry_msgs/Point  centroid_wrt_world
+geometry_msgs/Point  normal_wrt_world
+---
+geometry_msgs/Point  centroid_wrt_suction_point
+geometry_msgs/Point  normal_wrt_suction_point
